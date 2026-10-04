@@ -1,0 +1,12 @@
+.build/
+.swiftpm/
+dist/
+.DS_Store
+*.metallib
+*.air
+.env
+.env.*
+!.env.example
+.grok/
+*.log
+work/
