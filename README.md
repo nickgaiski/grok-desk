@@ -56,3 +56,7 @@ Dependency licenses are in `docs/THIRD-PARTY-NOTICES.txt`.
 ## License
 
 MIT; see `LICENSE`. Third-party components retain their own licenses. No rights to third-party trademarks are granted.
+
+## Preview disk image
+
+After packaging the app, run `bash scripts/package-dmg.sh`. This creates an unnotarized preview DMG and a SHA-256 checksum in `dist/`. The image contains the app, an Applications shortcut, first-launch instructions, and shortcuts to System Settings / Privacy & Security. Users make any first-launch approval themselves in macOS. No security settings are modified, and no CLI is downloaded by this installer.
