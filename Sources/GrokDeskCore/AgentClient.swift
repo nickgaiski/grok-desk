@@ -154,6 +154,9 @@ public final class AgentClient: @unchecked Sendable {
     public func openSession(cwd: String, sessionId: String?, model: String, effort: String) async throws -> String {
         try await openSessionResult(cwd: cwd, sessionId: sessionId, model: model, effort: effort).sessionID
     }
+    public func setSessionMode(sessionId: String, modeId: String) async throws {
+        _ = try await request(method: "session/set_mode", params: ["sessionId": sessionId, "modeId": modeId])
+    }
     public func configure(sessionId: String, model: String, effort: String) async throws {
         for (id, value) in [("model", model), ("reasoning_effort", effort)] where !value.isEmpty {
             _ = try await request(method: "session/set_config_option", params: ["sessionId": sessionId, "configId": id, "value": value])

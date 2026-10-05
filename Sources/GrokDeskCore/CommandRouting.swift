@@ -6,8 +6,8 @@ public enum CommandRoute: Equatable, Sendable {
 public func routeCommand(_ text: String, advertised: Set<String>, skills: Set<String>) -> CommandRoute? {
     guard text.hasPrefix("/") else { return nil }
     let name = String(text.dropFirst().split(whereSeparator: \.isWhitespace).first ?? "")
-    if ["queue", "dashboard", "tasks", "settings", "config", "new", "clear", "home", "plugins", "mcps", "skills", "marketplace"].contains(name) { return .native(name) }
-    if ["plan", "view-plan", "show-plan", "plan-view", "btw", "loop", "workflows", "create-workflow", "config-agents", "agents", "personas"].contains(name) { return .terminal(name) }
+    if ["queue", "dashboard", "tasks", "settings", "config", "new", "clear", "home", "plugins", "mcps", "skills", "marketplace", "plan", "view-plan", "show-plan", "plan-view"].contains(name) { return .native(name) }
+    if ["btw", "loop", "workflows", "create-workflow", "config-agents", "agents", "personas"].contains(name) { return .terminal(name) }
     if skills.contains(name) { return .skill(name) }
     if advertised.contains(name) { return .agent(name) }
     return .unsupported(name)

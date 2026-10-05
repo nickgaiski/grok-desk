@@ -36,8 +36,7 @@ public final class DeskModel: ObservableObject {
     @Published public private(set) var connecting = false
     @Published public var selectedModel = ""
     @Published public var effort = "high"
-    /// Permission and Plan are independent. Plan remains an explicit TUI fallback
-    /// until ACP advertises a verified native review operation.
+    /// The composer choice. Runtime updates must not copy a session's old mode back over it.
     @Published public var permissionMode = "default"
     @Published public var planMode = false
     @Published public var allowSubagents = true
@@ -601,6 +600,7 @@ public final class DeskModel: ObservableObject {
             }
             guard let sessionID = runtime.sessionID else { throw AgentClient.failure("The agent did not return a session ID.") }
             try await client.configure(sessionId: sessionID, model: prompt.modelID, effort: prompt.effort)
+            if planMode { try await client.setSessionMode(sessionId: sessionID, modeId: "plan") }
             guard runtime.turnEpoch == epoch else { return false }
             let display = prompt.text
                 + (skills.isEmpty ? "" : "\nSkills requested: " + skills.map { "/" + $0.commandName }.joined(separator: ", "))
@@ -708,7 +708,6 @@ public final class DeskModel: ObservableObject {
         connectionStatus = runtime.connectionStatus
         capabilities = runtime.capabilities
         contextLabel = runtime.contextLabel
-        permissionMode = runtime.permissionMode.rawValue
     }
 
     public func retry() async {
@@ -749,6 +748,39 @@ public final class DeskModel: ObservableObject {
     }
 
     public func allowPermission() { respondPermission(permissionChoices.first(where: { $0.kind == "allow_once" })?.id) }
+
+    /// Plan is a session mode. It does not restart the agent or open a terminal.
+    public func applyPlanMode() async {
+        let runtime = selectedRuntime
+        guard let client = runtime.agent, let sessionID = runtime.sessionID else { return }
+        let modeID = planMode ? "plan" : runtime.permissionMode.cliValue
+        do {
+            try await client.setSessionMode(sessionId: sessionID, modeId: modeID)
+            if runtime.chatError?.hasPrefix("Could not change work mode") == true { runtime.chatError = nil }
+        } catch {
+            runtime.chatError = "Could not change work mode: " + error.localizedDescription
+        }
+        publish(runtime)
+    }
+
+    public func revealSavedPlan() {
+        let runtime = selectedRuntime
+        guard let id = runtime.sessionID, let directory = sessionDirectory(root: sessionsRoot, id: id) else {
+            runtime.chatError = "This chat has no saved plan yet."
+            publish(runtime)
+            return
+        }
+        let file = directory.appendingPathComponent("plan.md")
+        guard let text = try? String(contentsOf: file, encoding: .utf8),
+              !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            runtime.chatError = "This chat has no saved plan yet."
+            publish(runtime)
+            return
+        }
+        runtime.chatError = nil
+        runtime.blocks.append(ChatBlock(id: UUID().uuidString, kind: "plan", text: text))
+        publish(runtime)
+    }
 
     /// Cancels only the selected runtime. Its queued prompts remain stored.
     public func cancel() {

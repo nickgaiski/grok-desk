@@ -202,6 +202,9 @@ struct DeskView: View {
             recentAttachments = (UserDefaults.standard.stringArray(forKey:"recentAttachments") ?? []).map { URL(fileURLWithPath:$0) }.filter { FileManager.default.fileExists(atPath:$0.path) }
             studioAgent.loadLocal()
             Task { await studioAgent.refresh(); await studioAgent.reloadSkills(cwd: projectFolder) }
+            if let saved = UserDefaults.standard.string(forKey: "grokDesk.permissionMode"), PermissionMode(rawValue: saved) != nil {
+                model.permissionMode = saved
+            }
             model.planMode = false
             do { projects = try ProjectStore().load() } catch { projectError = error.localizedDescription }
             RoutineScheduler.shared.start()
@@ -571,17 +574,9 @@ struct DeskView: View {
                 }
             }
             if let permission = model.permissionTitle {
-                HStack {
-                    Text(permission).font(.system(size: 13)).foregroundStyle(DeskColor.ink).lineLimit(2)
-                    Spacer()
-                    Button("Deny") { model.respondPermission(nil) }.buttonStyle(DeskButtonStyle())
-                    ForEach(model.permissionChoices) { choice in
-                        Button(choice.name) { model.respondPermission(choice.id) }
-                            .buttonStyle(DeskButtonStyle(prominent: choice.kind == "allow_once"))
-                    }
-                }
-                .padding(10)
-                .background(DeskColor.composer, in: RoundedRectangle(cornerRadius: 12))
+                PermissionRequestCard(title: permission, choices: model.permissionChoices, deny: { model.respondPermission(nil) }, choose: { model.respondPermission($0) })
+                    .padding(.horizontal, 26)
+                    .padding(.bottom, 8)
             }
             if let chatError = model.chatError {
                 HStack {
@@ -1236,17 +1231,19 @@ struct DeskView: View {
         }
     }
     private var buildControl: some View {
-        ComposerPopover("Work mode",value:"Build") {Label("Build",systemImage:"hammer")} content:{dismiss in
-            ComposerChoices(choices:[ComposerChoice(id:"build",title:"Build",detail:"Work directly on your request",symbol:"hammer"),ComposerChoice(id:"plan",title:"Plan",detail:"Plan and review in Grok’s terminal",symbol:"list.bullet.clipboard"),ComposerChoice(id:"review",title:"Review saved plan",symbol:"doc.text.magnifyingglass")],selected:"build") {choice in
+        let title = model.planMode ? "Plan" : "Build"
+        return ComposerPopover("Work mode",value:title) {Label(title,systemImage:model.planMode ? "list.bullet.clipboard" : "hammer")} content:{dismiss in
+            ComposerChoices(choices:[ComposerChoice(id:"build",title:"Build",detail:"Work directly on your request",symbol:"hammer"),ComposerChoice(id:"plan",title:"Plan",detail:"Plan in this chat before writing code",symbol:"list.bullet.clipboard"),ComposerChoice(id:"review",title:"Review saved plan",detail:"Show the saved plan here",symbol:"doc.text.magnifyingglass")],selected:model.planMode ? "plan" : "build") {choice in
                 dismiss()
-                if choice=="build" {model.planMode=false}
-                else {openGrokTerminal(command:choice=="plan" ? "/plan":"/view-plan",title:"Plan · Grok")}
+                if choice=="review" { model.revealSavedPlan(); return }
+                model.planMode = choice=="plan"
+                Task { await model.applyPlanMode() }
             }
         }
     }
     private var permissionControl: some View {
         ComposerPopover("Permissions",value:model.permissionMode=="auto" ? "Auto":model.permissionMode=="bypassPermissions" ? "Always approve":"Ask") {Label(model.permissionMode=="auto" ? "Auto":model.permissionMode=="bypassPermissions" ? "Always approve":"Ask",systemImage:"shield.lefthalf.filled")} content:{dismiss in
-            ComposerChoices(choices:[ComposerChoice(id:"default",title:"Ask",detail:"Confirm tool calls that need approval"),ComposerChoice(id:"auto",title:"Auto",detail:"Grok evaluates calls; some still need approval"),ComposerChoice(id:"bypassPermissions",title:"Always approve",detail:"Approve tool calls unless rules deny them")],selected:model.permissionMode) {model.permissionMode=$0;dismiss()}
+            ComposerChoices(choices:[ComposerChoice(id:"default",title:"Ask",detail:"Confirm tool calls that need approval"),ComposerChoice(id:"auto",title:"Auto",detail:"Grok evaluates calls; some still need approval"),ComposerChoice(id:"bypassPermissions",title:"Always approve",detail:"Approve tool calls unless rules deny them")],selected:model.permissionMode) {model.permissionMode=$0;UserDefaults.standard.set($0,forKey:"grokDesk.permissionMode");dismiss()}
         }
     }
     private var modelControl: some View {
@@ -1271,10 +1268,28 @@ struct DeskView: View {
         browserTabs.append(tab); browserActive = tab.id; browserOpen = true; workspace = .build
         rememberBrowser()
     }
+    private func commandBody(_ text: String) -> String {
+        let parts = text.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+        return parts.count > 1 ? String(parts[1]).trimmingCharacters(in: .whitespacesAndNewlines) : ""
+    }
+
     private func sendDraft() {
         if let route=routeCommand(draft,advertised:Set(model.capabilities.commands),skills:Set(model.skillItems.map(\.commandName))) {
             switch route {
             case .native(let name):
+                if name=="plan" {
+                    model.planMode = true
+                    let body = commandBody(draft)
+                    draft = ""
+                    let cwd = selected?.cwd ?? draftCWD ?? projectFolder
+                    let resume = selectedID
+                    Task {
+                        await model.applyPlanMode()
+                        if !body.isEmpty { _ = await model.send(text: body, cwd: cwd, resume: resume) }
+                    }
+                    return
+                }
+                if ["view-plan","show-plan","plan-view"].contains(name) { model.revealSavedPlan(); draft=""; return }
                 if name=="queue" {queueOpen=true}
                 else if name=="dashboard" || name=="tasks" {workspace = .agents}
                 else if name=="new" || name=="clear" || name=="home" {newChat()}
@@ -1391,5 +1406,56 @@ private final class ChromeView: NSView {
         window.titlebarSeparatorStyle = .none
         window.backgroundColor = .clear
         window.isOpaque = false
+    }
+}
+
+struct PermissionRequestCard: View {
+    let title: String
+    let choices: [PermissionChoice]
+    let deny: () -> Void
+    let choose: (String) -> Void
+
+    var body: some View {
+        let once = choices.filter { $0.kind == "allow_once" }
+        let more = choices.filter { $0.kind != "allow_once" }
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Permission").font(.system(size: 11, weight: .medium)).foregroundStyle(DeskColor.muted)
+            Text(title)
+                .font(.system(size: 12, design: .monospaced))
+                .foregroundStyle(DeskColor.ink)
+                .textSelection(.enabled)
+                .lineLimit(4)
+                .truncationMode(.middle)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(10)
+                .background(DeskColor.row, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+            HStack(spacing: 8) {
+                Button("Deny", action: deny).buttonStyle(DeskButtonStyle())
+                Spacer(minLength: 8)
+                ForEach(once) { choice in
+                    Button(choice.name) { choose(choice.id) }.buttonStyle(DeskButtonStyle(prominent: true))
+                }
+            }
+            if !more.isEmpty {
+                VStack(alignment: .leading, spacing: 6) {
+                    ForEach(more) { choice in
+                        Button(choice.name) { choose(choice.id) }
+                            .buttonStyle(.plain)
+                            .font(.system(size: 12))
+                            .foregroundStyle(DeskColor.ink)
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 7)
+                            .background(DeskColor.row, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    }
+                }
+            }
+        }
+        .padding(12)
+        .frame(maxWidth: 736)
+        .frame(maxWidth: .infinity)
+        .background(DeskColor.composer, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(DeskColor.hairline))
     }
 }

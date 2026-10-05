@@ -599,11 +599,7 @@ struct ImagineStudio: View {
     private var activity: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let permission = model.permissionTitle, studio.generating {
-                Text(permission).font(.system(size: 12))
-                HStack {
-                    Button("Deny") { model.respondPermission(nil) }.buttonStyle(DeskButtonStyle())
-                    ForEach(model.permissionChoices) { choice in Button(choice.name) { model.respondPermission(choice.id) }.buttonStyle(DeskButtonStyle()) }
-                }
+                PermissionRequestCard(title: permission, choices: model.permissionChoices, deny: { model.respondPermission(nil) }, choose: { model.respondPermission($0) })
             }
             ScrollView {
                 Text(studio.generating ? model.blocks.suffix(3).map(\.text).joined(separator: "\n") : studio.generationMessage.isEmpty ? "Generation runs through your Grok Build CLI." : studio.generationMessage)
