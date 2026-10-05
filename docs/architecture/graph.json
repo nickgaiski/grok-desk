@@ -1,0 +1,842 @@
+{
+  "description": "File-level projection of the existing Graphify graph. Only tracked source paths and extracted cross-file links are exported. Not a complete call graph; missing links are not proof of independence. No original labels, contexts, metadata, or snippets are copied.",
+  "nodes": [
+    {
+      "id": "Package.swift",
+      "label": "Package",
+      "group": "Package"
+    },
+    {
+      "id": "Sources/GrokDesk/AgentDashboard.swift",
+      "label": "AgentDashboard",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/AgentSettings.swift",
+      "label": "AgentSettings",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/BrowserSettings.swift",
+      "label": "BrowserSettings",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ChatWebPane.swift",
+      "label": "ChatWebPane",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ComposerInput.swift",
+      "label": "ComposerInput",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ComposerPopover.swift",
+      "label": "ComposerPopover",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ConfigurationEditor.swift",
+      "label": "ConfigurationEditor",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ConnectionHealthBadge.swift",
+      "label": "ConnectionHealthBadge",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ConversationBlock.swift",
+      "label": "ConversationBlock",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/Design.swift",
+      "label": "Design",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/EmbeddedTerminal.swift",
+      "label": "EmbeddedTerminal",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/GlassSlider.swift",
+      "label": "GlassSlider",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/GrokDeskApp.swift",
+      "label": "GrokDeskApp",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ImagineStudio.swift",
+      "label": "ImagineStudio",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/LiquidGlass.swift",
+      "label": "LiquidGlass",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/MarketplaceStudio.swift",
+      "label": "MarketplaceStudio",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/Motion.swift",
+      "label": "Motion",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ProjectEditor.swift",
+      "label": "ProjectEditor",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/ProjectRulesEditor.swift",
+      "label": "ProjectRulesEditor",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/PromptQueueView.swift",
+      "label": "PromptQueueView",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/RepositoryPanel.swift",
+      "label": "RepositoryPanel",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/RoutinesView.swift",
+      "label": "RoutinesView",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/SessionRow.swift",
+      "label": "SessionRow",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/StudioAgentCanvas.swift",
+      "label": "StudioAgentCanvas",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/StudioControls.swift",
+      "label": "StudioControls",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/StudioMediaPicker.swift",
+      "label": "StudioMediaPicker",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/WorkspaceFilesPanel.swift",
+      "label": "WorkspaceFilesPanel",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/WorktreePicker.swift",
+      "label": "WorktreePicker",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDesk/main.swift",
+      "label": "main",
+      "group": "GrokDesk"
+    },
+    {
+      "id": "Sources/GrokDeskCore/Account.swift",
+      "label": "Account",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/AgentActivity.swift",
+      "label": "AgentActivity",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/AgentClient.swift",
+      "label": "AgentClient",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "label": "AgentRuntimeTypes",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/BrowserIntegration.swift",
+      "label": "BrowserIntegration",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/CameraPresets.swift",
+      "label": "CameraPresets",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/ChatBlocks.swift",
+      "label": "ChatBlocks",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/ChatBrowser.swift",
+      "label": "ChatBrowser",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/ClipboardAttachments.swift",
+      "label": "ClipboardAttachments",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/CommandRouting.swift",
+      "label": "CommandRouting",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/CommandRunner.swift",
+      "label": "CommandRunner",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/Configuration.swift",
+      "label": "Configuration",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/ConnectionHealth.swift",
+      "label": "ConnectionHealth",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/DeskModel.swift",
+      "label": "DeskModel",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/DisplayName.swift",
+      "label": "DisplayName",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/GrokPaths.swift",
+      "label": "GrokPaths",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/ImagineClient.swift",
+      "label": "ImagineClient",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/LiveRunner.swift",
+      "label": "LiveRunner",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/MCPBrowserProbe.swift",
+      "label": "MCPBrowserProbe",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/ModelCatalog.swift",
+      "label": "ModelCatalog",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/PanelFiles.swift",
+      "label": "PanelFiles",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/PluginCatalog.swift",
+      "label": "PluginCatalog",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/ProjectStore.swift",
+      "label": "ProjectStore",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/QueuedPrompt.swift",
+      "label": "QueuedPrompt",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/Repository.swift",
+      "label": "Repository",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/RoutineExecutor.swift",
+      "label": "RoutineExecutor",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/RoutineLaunchAgent.swift",
+      "label": "RoutineLaunchAgent",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/RoutineSchedule.swift",
+      "label": "RoutineSchedule",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/RoutineScheduler.swift",
+      "label": "RoutineScheduler",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/RoutineStore.swift",
+      "label": "RoutineStore",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/Routines.swift",
+      "label": "Routines",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/RulesDocument.swift",
+      "label": "RulesDocument",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/RuntimeRegistry.swift",
+      "label": "RuntimeRegistry",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/SessionIndex.swift",
+      "label": "SessionIndex",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "label": "SessionRuntime",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/SettingDescriptor.swift",
+      "label": "SettingDescriptor",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/StudioSession.swift",
+      "label": "StudioSession",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/Subscription.swift",
+      "label": "Subscription",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/TerminalHandoff.swift",
+      "label": "TerminalHandoff",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/UpdateCheck.swift",
+      "label": "UpdateCheck",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/UpdateInstaller.swift",
+      "label": "UpdateInstaller",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/VideoAudio.swift",
+      "label": "VideoAudio",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/WorkspaceIdentity.swift",
+      "label": "WorkspaceIdentity",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/WorktreeAssociations.swift",
+      "label": "WorktreeAssociations",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskCore/WorktreeService.swift",
+      "label": "WorktreeService",
+      "group": "GrokDeskCore"
+    },
+    {
+      "id": "Sources/GrokDeskRoutineRunner/main.swift",
+      "label": "main",
+      "group": "GrokDeskRoutineRunner"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Sources/GrokDesk/AgentDashboard.swift",
+      "target": "Sources/GrokDeskCore/AgentActivity.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/AgentDashboard.swift",
+      "target": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/AgentDashboard.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/AgentSettings.swift",
+      "target": "Sources/GrokDeskCore/GrokPaths.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/BrowserSettings.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/ChatWebPane.swift",
+      "target": "Sources/GrokDeskCore/Account.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDesk/ChatWebPane.swift",
+      "target": "Sources/GrokDeskCore/ChatBrowser.swift",
+      "observed_links": 11
+    },
+    {
+      "source": "Sources/GrokDesk/ChatWebPane.swift",
+      "target": "Sources/GrokDeskCore/CommandRouting.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/ConfigurationEditor.swift",
+      "target": "Sources/GrokDeskCore/Configuration.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDesk/ConnectionHealthBadge.swift",
+      "target": "Sources/GrokDeskCore/ConnectionHealth.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/ConversationBlock.swift",
+      "target": "Sources/GrokDeskCore/ChatBlocks.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/EmbeddedTerminal.swift",
+      "target": "Sources/GrokDeskCore/CommandRouting.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDesk/Motion.swift",
+      "observed_links": 5
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDeskCore/Account.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDeskCore/ChatBrowser.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 5
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDeskCore/GrokPaths.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDeskCore/ProjectStore.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDeskCore/RoutineScheduler.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/GrokDeskApp.swift",
+      "target": "Sources/GrokDeskCore/SessionIndex.swift",
+      "observed_links": 5
+    },
+    {
+      "source": "Sources/GrokDesk/ImagineStudio.swift",
+      "target": "Sources/GrokDeskCore/CameraPresets.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/ImagineStudio.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDesk/ImagineStudio.swift",
+      "target": "Sources/GrokDeskCore/StudioSession.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDesk/ImagineStudio.swift",
+      "target": "Sources/GrokDeskCore/VideoAudio.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/MarketplaceStudio.swift",
+      "target": "Sources/GrokDeskCore/Account.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDesk/MarketplaceStudio.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/MarketplaceStudio.swift",
+      "target": "Sources/GrokDeskCore/PluginCatalog.swift",
+      "observed_links": 5
+    },
+    {
+      "source": "Sources/GrokDesk/ProjectRulesEditor.swift",
+      "target": "Sources/GrokDeskCore/GrokPaths.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/ProjectRulesEditor.swift",
+      "target": "Sources/GrokDeskCore/RulesDocument.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDesk/PromptQueueView.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/RepositoryPanel.swift",
+      "target": "Sources/GrokDeskCore/Repository.swift",
+      "observed_links": 8
+    },
+    {
+      "source": "Sources/GrokDesk/RoutinesView.swift",
+      "target": "Sources/GrokDeskCore/RoutineExecutor.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDesk/RoutinesView.swift",
+      "target": "Sources/GrokDeskCore/RoutineLaunchAgent.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDesk/RoutinesView.swift",
+      "target": "Sources/GrokDeskCore/RoutineScheduler.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDesk/RoutinesView.swift",
+      "target": "Sources/GrokDeskCore/RoutineStore.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDesk/RoutinesView.swift",
+      "target": "Sources/GrokDeskCore/Routines.swift",
+      "observed_links": 15
+    },
+    {
+      "source": "Sources/GrokDesk/SessionRow.swift",
+      "target": "Sources/GrokDesk/Motion.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDesk/StudioAgentCanvas.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/StudioControls.swift",
+      "target": "Sources/GrokDesk/Motion.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/StudioMediaPicker.swift",
+      "target": "Sources/GrokDeskCore/DeskModel.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDesk/WorkspaceFilesPanel.swift",
+      "target": "Sources/GrokDeskCore/PanelFiles.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDesk/WorktreePicker.swift",
+      "target": "Sources/GrokDeskCore/WorktreeService.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/AgentActivity.swift",
+      "target": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/AgentClient.swift",
+      "target": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "observed_links": 8
+    },
+    {
+      "source": "Sources/GrokDeskCore/AgentClient.swift",
+      "target": "Sources/GrokDeskCore/CommandRunner.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "target": "Sources/GrokDeskCore/AgentClient.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/ConnectionHealth.swift",
+      "target": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/Account.swift",
+      "observed_links": 5
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/AgentActivity.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/AgentClient.swift",
+      "observed_links": 7
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "observed_links": 5
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/ChatBlocks.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/CommandRunner.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/ConnectionHealth.swift",
+      "observed_links": 8
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/MCPBrowserProbe.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/ModelCatalog.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/PluginCatalog.swift",
+      "observed_links": 6
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/QueuedPrompt.swift",
+      "observed_links": 7
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/RuntimeRegistry.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/SessionIndex.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "observed_links": 8
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/Subscription.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/DeskModel.swift",
+      "target": "Sources/GrokDeskCore/UpdateInstaller.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDeskCore/GrokPaths.swift",
+      "target": "Sources/GrokDeskCore/Repository.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/LiveRunner.swift",
+      "target": "Sources/GrokDeskCore/AgentClient.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/LiveRunner.swift",
+      "target": "Sources/GrokDeskCore/CommandRunner.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDeskCore/LiveRunner.swift",
+      "target": "Sources/GrokDeskCore/UpdateInstaller.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/PluginCatalog.swift",
+      "target": "Sources/GrokDeskCore/Account.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/QueuedPrompt.swift",
+      "target": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/Repository.swift",
+      "target": "Sources/GrokDeskCore/UpdateInstaller.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineExecutor.swift",
+      "target": "Sources/GrokDeskCore/RoutineStore.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineExecutor.swift",
+      "target": "Sources/GrokDeskCore/Routines.swift",
+      "observed_links": 11
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineLaunchAgent.swift",
+      "target": "Sources/GrokDeskCore/RoutineExecutor.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineLaunchAgent.swift",
+      "target": "Sources/GrokDeskCore/Routines.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineScheduler.swift",
+      "target": "Sources/GrokDeskCore/RoutineExecutor.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineScheduler.swift",
+      "target": "Sources/GrokDeskCore/RoutineStore.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineScheduler.swift",
+      "target": "Sources/GrokDeskCore/Routines.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDeskCore/RoutineStore.swift",
+      "target": "Sources/GrokDeskCore/Routines.swift",
+      "observed_links": 21
+    },
+    {
+      "source": "Sources/GrokDeskCore/Routines.swift",
+      "target": "Sources/GrokDesk/RoutinesView.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDeskCore/RuntimeRegistry.swift",
+      "target": "Sources/GrokDeskCore/AgentActivity.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/RuntimeRegistry.swift",
+      "target": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "observed_links": 3
+    },
+    {
+      "source": "Sources/GrokDeskCore/RuntimeRegistry.swift",
+      "target": "Sources/GrokDeskCore/QueuedPrompt.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/RuntimeRegistry.swift",
+      "target": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "observed_links": 6
+    },
+    {
+      "source": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "target": "Sources/GrokDeskCore/AgentActivity.swift",
+      "observed_links": 2
+    },
+    {
+      "source": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "target": "Sources/GrokDeskCore/AgentClient.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "target": "Sources/GrokDeskCore/AgentRuntimeTypes.swift",
+      "observed_links": 4
+    },
+    {
+      "source": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "target": "Sources/GrokDeskCore/ChatBlocks.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/SessionRuntime.swift",
+      "target": "Sources/GrokDeskCore/QueuedPrompt.swift",
+      "observed_links": 6
+    },
+    {
+      "source": "Sources/GrokDeskCore/SettingDescriptor.swift",
+      "target": "Sources/GrokDeskCore/Configuration.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskCore/WorktreeService.swift",
+      "target": "Sources/GrokDeskCore/Repository.swift",
+      "observed_links": 1
+    },
+    {
+      "source": "Sources/GrokDeskRoutineRunner/main.swift",
+      "target": "Sources/GrokDeskCore/RoutineExecutor.swift",
+      "observed_links": 1
+    }
+  ]
+}
